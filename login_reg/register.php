@@ -1,9 +1,9 @@
 <?php
 // Database connection
-$servername = "localhost:3307"; // Default localhost
-$username = "root";        // Default MySQL username
-$password = "";            // Default MySQL password
-$dbname = "login-lostsync"; // Database name
+$servername = "localhost:3307"; 
+$username = "root";       
+$password = "";            
+$dbname = "login-lostsync"; 
 
 // Connect to the database
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -28,21 +28,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($password !== $confirm_password) {
         echo "<script>alert('Passwords do not match!');</script>";
     } else {
-        // Hash the password
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        // not working with hashing will work on it in future
+        // $hashed_password = password_hash($password,PASSWORD_DEFAULT);
 
         // Insert into the database
         $sql = "INSERT INTO login_register (full_name, college_id, email, phone_no, password, gender) 
-                VALUES ('$full_name', '$college_id', '$email', '$phone_no', '$hashed_password', '$gender')";
+                VALUES ('$full_name', '$college_id', '$email', '$phone_no', '$password', '$gender')";
 
         if ($conn->query($sql) === TRUE) {
-            echo "<script>alert('Registration successful!');</script>";
+            echo "<script>alert('Registration successful!');
+            window.location.href='login.html'; </script>";            
+            exit;
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
     }
 }
-
-// Close the connection
 $conn->close();
 ?>
