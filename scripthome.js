@@ -19,3 +19,17 @@ document.addEventListener('click', (e) => {
 navLinks.addEventListener('click', (e) => {
     e.stopPropagation();
 });
+
+// profilling
+const profilecircle = document.getElementById('profile-circle');
+const dropdownmenu = document.getElementById('dropdown-menu');
+
+profilecircle.addEventListener('click', ()=> {
+    dropdownmenu.style.display=dropdownmenu.style.display==='block' ? 'none' : 'block';
+});
+
+document.addEventListener('click',(e)=>{
+    if(!profilecircle.contains(e.target)&& !dropdownmenu.contains(e.target)){
+        dropdownmenu.style.display='none';
+    }
+});

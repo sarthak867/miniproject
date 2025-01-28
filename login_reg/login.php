@@ -24,7 +24,9 @@ if (mysqli_num_rows($result) > 0) {
         exit();
     } else {
         // Redirecting to homepage in index.html
-        header("Location: ../index.html");
+        $_SESSION['user_id']=$row['id'];
+        $_SESSION['full_name']=$row['full_name'];
+        header("Location: ../index.php");
         exit();
     }
 } else {
